@@ -6,10 +6,15 @@ metadata:
     {{- include "python-chart.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  # ports:
+  #   - port: {{ .Values.service.port }}
+  #     targetPort: http
+  #     protocol: TCP
+  #     name: http
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: {{ .Values.service.protocol }}
+      name: {{ .Values.service.name }}
   selector:
     {{- include "python-chart.selectorLabels" . | nindent 4 }}
